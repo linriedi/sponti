@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Sponti</string>
     <string name="pushAndSpeak_string">schmacca e tschontscha</string>
+    <string name="speak_string">tschontscha</string>
     <string name="recordButton_text">recordar</string>
 </resources>
