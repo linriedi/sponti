@@ -6,17 +6,17 @@ import android.util.Log;
 public class RecorderAdapter {
 
     private MediaRecorder mRecorder = null;
-    private String mFileName;
+    private String audioFile;
 
-    public RecorderAdapter(String externalCacheDir){
-        mFileName = externalCacheDir + "/" + R.string.setting_audioRecordFileName;
+    public RecorderAdapter(String audioFile){
+        this.audioFile = audioFile;
     }
 
     public void startRecord() {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(mFileName);
+        mRecorder.setOutputFile(audioFile);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {

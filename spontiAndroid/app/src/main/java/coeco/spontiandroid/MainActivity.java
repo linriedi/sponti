@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button recordButton = null;
     private RecorderAdapter recroderAdapter = null;
+    private AzureStorageAdapter azureStorageAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recroderAdapter = new RecorderAdapter(getExternalCacheDir().getAbsolutePath());
+        String mFileName = getExternalCacheDir().getAbsolutePath() + "/" + R.string.setting_audioRecordFileName;
+
+        recroderAdapter = new RecorderAdapter(mFileName);
+        azureStorageAdapter = new AzureStorageAdapter(mFileName);
 
         addListeners();
     }
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     recroderAdapter.startRecord();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     recroderAdapter.stopRecord();
+                    azureStorageAdapter.upLoad();
                     TextView textView = (TextView) findViewById(R.id.text);
                     textView.setText(R.string.pushAndSpeak_string);
                 }
