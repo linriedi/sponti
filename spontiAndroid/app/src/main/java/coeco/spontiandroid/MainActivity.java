@@ -1,6 +1,8 @@
 package coeco.spontiandroid;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,7 +13,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+    private static boolean PERMISION_TO_RECORD_ACCEPTED = false;
+
     private Button recordButton = null;
+    private RecorderAdapter recroderAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        recroderAdapter = new RecorderAdapter(getExternalCacheDir().getAbsolutePath());
 
         addListeners();
     }
@@ -30,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case REQUEST_RECORD_AUDIO_PERMISSION:
+                PERMISION_TO_RECORD_ACCEPTED  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                break;
+        }
+        if (!PERMISION_TO_RECORD_ACCEPTED ) finish();
+
+    }
+
     private void addListeners() {
         recordButton = (Button) findViewById(R.id.recordButton);
 
@@ -38,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     TextView textView = (TextView) findViewById(R.id.text);
                     textView.setText(R.string.speak_string);
+                    recroderAdapter.startRecord();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    recroderAdapter.stopRecord();
                     TextView textView = (TextView) findViewById(R.id.text);
                     textView.setText(R.string.pushAndSpeak_string);
                 }

@@ -3,4 +3,5 @@
     <string name="pushAndSpeak_string">schmacca e tschontscha</string>
     <string name="speak_string">tschontscha</string>
     <string name="recordButton_text">recordar</string>
+    <string name="setting_audioRecordFileName">audiorecord.3gp"</string>
 </resources>
