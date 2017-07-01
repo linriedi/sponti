@@ -8,6 +8,13 @@ namespace SpontiBL
 {
     public class ItemsService
     {
+        private string installedLocation;
+
+        public ItemsService(string installedLocation)
+        {
+            this.installedLocation = installedLocation;
+        }
+
         public async Task<IEnumerable<string>> GetItemsAsync()
         {
             // Retrieve storage account from connection string.
@@ -27,6 +34,26 @@ namespace SpontiBL
                 .Results
                 .OfType<CloudBlockBlob>()
                 .Select(b => b.Name);
+        }
+
+        public async Task PlayAsync(string selectedItem)
+        {
+            // Retrieve storage account from connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Settings.ConnectionString);
+
+            // Create the blob client.
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            // Retrieve reference to a previously created container.
+            CloudBlobContainer container = blobClient.GetContainerReference("voice");
+
+            // Retrieve reference to a blob named "photo1.jpg".
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(selectedItem);
+
+            using (var fileStream = System.IO.File.OpenWrite(installedLocation + @"/test.3gp"))
+            {
+                await blockBlob.DownloadToStreamAsync(fileStream);
+            }
         }
     }
 }

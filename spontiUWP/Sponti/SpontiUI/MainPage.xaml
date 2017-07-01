@@ -8,6 +8,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="itemListView" ItemsSource="{x:Bind Items}"/>
+        <ListView 
+            x:Name="itemListView" 
+            ItemsSource="{x:Bind Items}"
+            SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}"/>
+        <Button 
+            x:Name="button" 
+            Content="Button" 
+            Click="OnClick" />
     </Grid>
 </Page>
