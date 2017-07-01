@@ -20,8 +20,13 @@ namespace SpontiUI
         {
             base.OnNavigatedTo(e);
 
-            var items = this.itemsService.GetItems();
-            foreach(var item in items)
+            NewMethod();
+        }
+
+        private async System.Threading.Tasks.Task NewMethod()
+        {
+            var items = await this.itemsService.GetItemsAsync();
+            foreach (var item in items)
             {
                 Items.Add(item);
             }
