@@ -18,7 +18,7 @@
                 android:id="@+id/generalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorButton"
+                android:background="@color/colorNavigationButton"
                 android:text="General"/>
         </LinearLayout>
 
@@ -38,7 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/editText2"
@@ -47,13 +47,14 @@
                 android:background="@color/colorWhite"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:padding="15dp"/>
-        </LinearLayout>
+                android:padding="15dp"
+                android:layout_marginBottom="@dimen/fab_margin"/>
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButton"
+                android:text="TARMETTER"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2" >
         </LinearLayout>
     </LinearLayout>
 

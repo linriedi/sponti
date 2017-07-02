@@ -20,7 +20,7 @@
                 android:id="@+id/todoButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorButton"
+                android:background="@color/colorNavigationButton"
                 android:text="TODO"/>
         </LinearLayout>
 
