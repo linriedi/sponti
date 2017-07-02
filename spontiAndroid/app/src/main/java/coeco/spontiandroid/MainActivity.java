@@ -1,5 +1,6 @@
 package coeco.spontiandroid;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean PERMISION_TO_RECORD_ACCEPTED = false;
 
     private Button recordButton = null;
+    private Button todoButton = null;
     private RecorderAdapter recroderAdapter = null;
     private AzureStorageAdapter azureStorageAdapter = null;
 
@@ -72,5 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        todoButton = (Button) findViewById(R.id.todoButton);
+        todoButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                onTodoButtonClick();
+            }
+        });
+    }
+
+    private void onTodoButtonClick() {
+        Intent k = new Intent(this, TodoActivity.class);
+        startActivity(k);
     }
 }
