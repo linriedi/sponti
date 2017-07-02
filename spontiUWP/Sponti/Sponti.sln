@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpontiUI", "SpontiUI\SpontiUI.csproj", "{FD8162F6-C22E-4238-A7D2-914B24EAAE71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpontiBL", "SpontiBL\SpontiBL.csproj", "{9D37E789-B37E-4070-8501-5FCFD9D9FC0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpontiBL", "SpontiBL\SpontiBL.csproj", "{9D37E789-B37E-4070-8501-5FCFD9D9FC0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{EA86A4E1-4E70-43A5-BA12-F3A512D0BE77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpontiBackEnd", "BackEnd\SpontiBackEnd\SpontiBackEnd.csproj", "{69C426B2-BB70-4E7F-B176-53595F74A741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,8 +59,27 @@ Global
 		{9D37E789-B37E-4070-8501-5FCFD9D9FC0A}.Release|x64.Build.0 = Release|Any CPU
 		{9D37E789-B37E-4070-8501-5FCFD9D9FC0A}.Release|x86.ActiveCfg = Release|Any CPU
 		{9D37E789-B37E-4070-8501-5FCFD9D9FC0A}.Release|x86.Build.0 = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|ARM.Build.0 = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|x64.Build.0 = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Debug|x86.Build.0 = Debug|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|ARM.ActiveCfg = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|ARM.Build.0 = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|x64.ActiveCfg = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|x64.Build.0 = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|x86.ActiveCfg = Release|Any CPU
+		{69C426B2-BB70-4E7F-B176-53595F74A741}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69C426B2-BB70-4E7F-B176-53595F74A741} = {EA86A4E1-4E70-43A5-BA12-F3A512D0BE77}
 	EndGlobalSection
 EndGlobal
