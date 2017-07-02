@@ -50,10 +50,14 @@ namespace SpontiBL
             // Retrieve reference to a blob named "photo1.jpg".
             CloudBlockBlob blockBlob = container.GetBlockBlobReference(selectedItem);
 
-            using (var fileStream = System.IO.File.OpenWrite(installedLocation + @"/test.3gp"))
+            var filePath = installedLocation + @"\test.3gp";
+            System.IO.File.Delete(filePath);
+            using (var fileStream = System.IO.File.OpenWrite(filePath))
             {
+                var test1 = fileStream.CanWrite;
                 await blockBlob.DownloadToStreamAsync(fileStream);
             }
+            var test = 0;
         }
     }
 }
