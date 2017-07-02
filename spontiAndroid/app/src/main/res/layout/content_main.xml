@@ -20,6 +20,7 @@
                 android:id="@+id/todoButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorButton"
                 android:text="TODO"/>
         </LinearLayout>
 
@@ -53,6 +54,7 @@
                 android:id="@+id/recordButton"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:background="@color/colorButton"
                 android:text="@string/recordButton_text"/>
         </LinearLayout>
 
