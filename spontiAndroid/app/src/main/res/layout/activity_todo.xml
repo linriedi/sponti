@@ -41,7 +41,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
@@ -50,6 +50,7 @@
                 android:padding="15dp"
                 android:layout_marginBottom="@dimen/fab_margin"/>
             <Button
+                android:id="@+id/sendButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorButton"
