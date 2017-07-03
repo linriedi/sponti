@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using AzureAdapter;
 
 namespace SpontiBackEnd.Controllers
 {
@@ -25,8 +23,10 @@ namespace SpontiBackEnd.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]TodoItem value)
         {
+            new StorageTable()
+                .InsertAsync(value);
         }
 
         // PUT api/values/5
