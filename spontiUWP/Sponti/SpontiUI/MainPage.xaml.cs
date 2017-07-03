@@ -1,11 +1,10 @@
 ﻿using SpontiBL;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.Media.Core;
 using Windows.Media.Playback;
-using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,7 +12,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SpontiUI
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
         private readonly ItemsService itemsService;
         private MediaPlayer m = new MediaPlayer();
@@ -35,6 +34,23 @@ namespace SpontiUI
 
         public string SelectedItem { get; set; }
         public string SelectedTodoItem { get; set; }
+
+        private string todoText;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string TodoText
+        {
+            get
+            {
+                return this.todoText;
+            }
+            set
+            {
+                this.todoText = value;
+                this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(this.TodoText)));
+            }
+        }
 
         public MainPage()
         {
@@ -108,6 +124,12 @@ namespace SpontiUI
             });
         }
 
+        private void OnTodoSelectedChanged(object sender, RoutedEventArgs e)
+        {
+            var content = this.itemsService.GetTodoItems(this.SelectedTodoItem);
+            this.TodoText = content;
+        }
+        
         private async Task GetItems()
         {
             var items = await this.itemsService.GetItemsAsync();

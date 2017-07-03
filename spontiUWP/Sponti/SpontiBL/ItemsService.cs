@@ -10,6 +10,7 @@ namespace SpontiBL
     public class ItemsService
     {
         private string installedLocation;
+        private readonly List<TodoItem> todoItems = new List<TodoItem>();
 
         public ItemsService(string installedLocation)
         {
@@ -54,6 +55,7 @@ namespace SpontiBL
                 foreach (var entity in resultSegment.Results)
                 {
                     list.Add(entity.Id);
+                    todoItems.Add(entity);
                 }
             } while (token != null);
 
@@ -82,6 +84,13 @@ namespace SpontiBL
                 await blockBlob.DownloadToStreamAsync(fileStream);
             }
             var test = 0;
+        }
+
+        public string GetTodoItems(string selectedTodoItem)
+        {
+            return this.todoItems
+                .Single(s => s.Id == selectedTodoItem)
+                .Content;
         }
     }
 

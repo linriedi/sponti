@@ -30,10 +30,12 @@
                 <ListView 
                     x:Name="todoItemListView" 
                     ItemsSource="{x:Bind TodoItems}"
-                    SelectedItem="{x:Bind SelectedTodoItem, Mode=TwoWay}"/>
+                    SelectedItem="{x:Bind SelectedTodoItem, Mode=TwoWay}"
+                    SelectionChanged="{x:Bind OnTodoSelectedChanged}"/>
             </Grid>
-            <TextBlock Grid.Column="2" Text="C"/>
+            <TextBlock 
+                Grid.Column="2" 
+                Text="{x:Bind TodoText, Mode=TwoWay}"/>
         </Grid>
-        
     </Grid>
 </Page>
