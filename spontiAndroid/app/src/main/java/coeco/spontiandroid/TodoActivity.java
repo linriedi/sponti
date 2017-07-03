@@ -50,6 +50,8 @@ public class TodoActivity extends AppCompatActivity {
 
         new GetTask()
                 .execute(text, "", "");
+
+        editText.setText("");
     }
 
     private void onTodoButtonClick() {
@@ -69,7 +71,9 @@ public class TodoActivity extends AppCompatActivity {
                 urlConnection.setRequestMethod("POST");
 
                 JSONObject parent = new JSONObject();
-                parent.put("id", "xxx");
+
+                String time = new TimeProvider().getCurrentTimeStamp();
+                parent.put("id", time);
                 parent.put("content", urls[0]);
 
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());

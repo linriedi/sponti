@@ -9,8 +9,6 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AzureStorageAdapter {
 
@@ -30,20 +28,6 @@ public class AzureStorageAdapter {
                 .execute("", "", "");
     }
 
-    private static String getCurrentTimeStamp(){
-        try {
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String currentDateTime = dateFormat.format(new Date()); // Find todays date
-
-            return currentDateTime;
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            return null;
-        }
-    }
-
     private class UploadTask extends AsyncTask<String, Integer, Long> {
         protected Long doInBackground(String... urls) {
             try
@@ -61,7 +45,8 @@ public class AzureStorageAdapter {
                 final String filePath = audioFile;
 
                 // Create or overwrite the "myimage.jpg" blob with contents from a local file.
-                CloudBlockBlob blob = container.getBlockBlobReference("voice" + getCurrentTimeStamp() +".3gp");
+                String time = new TimeProvider().getCurrentTimeStamp();
+                CloudBlockBlob blob = container.getBlockBlobReference("voice" + time +".3gp");
                 File source = new File(filePath);
                 blob.upload(new FileInputStream(source), source.length());
             }
