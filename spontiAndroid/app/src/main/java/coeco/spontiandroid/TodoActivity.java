@@ -46,10 +46,10 @@ public class TodoActivity extends AppCompatActivity {
 
     private void onSendButton() {
         editText = (EditText) findViewById(R.id.editText);
-        editText.setText("Hi stupid");
+        String text = editText.getText().toString();
 
         new GetTask()
-                .execute("", "", "");
+                .execute(text, "", "");
     }
 
     private void onTodoButtonClick() {
@@ -69,8 +69,8 @@ public class TodoActivity extends AppCompatActivity {
                 urlConnection.setRequestMethod("POST");
 
                 JSONObject parent = new JSONObject();
-                parent.put("id", "firstNewThree");
-                parent.put("content", "some content from mobile app");
+                parent.put("id", "xxx");
+                parent.put("content", urls[0]);
 
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
                 wr.write( parent.toString() );
