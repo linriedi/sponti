@@ -8,13 +8,32 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView 
-            x:Name="itemListView" 
-            ItemsSource="{x:Bind Items}"
-            SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}"/>
-        <Button 
-            x:Name="button" 
-            Content="Button" 
-            Click="OnClick" />
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid
+                Grid.Column="0">
+                <ListView 
+                    x:Name="itemListView" 
+                    ItemsSource="{x:Bind Items}"
+                    SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}"/>
+                <Button 
+                    x:Name="button" 
+                    Content="Button" 
+                    Click="OnClick" />
+            </Grid>
+            <Grid 
+                Grid.Column="1">
+                <ListView 
+                    x:Name="todoItemListView" 
+                    ItemsSource="{x:Bind TodoItems}"
+                    SelectedItem="{x:Bind SelectedTodoItem, Mode=TwoWay}"/>
+            </Grid>
+            <TextBlock Grid.Column="2" Text="C"/>
+        </Grid>
+        
     </Grid>
 </Page>

@@ -19,6 +19,7 @@ namespace SpontiUI
         private MediaPlayer m = new MediaPlayer();
 
         private ObservableCollection<string> _items = new ObservableCollection<string>();
+        private ObservableCollection<string> _todoItems = new ObservableCollection<string>();
         private string temp;
         private MediaSource test1;
 
@@ -27,7 +28,13 @@ namespace SpontiUI
             get { return this._items; }
         }
 
+        public ObservableCollection<string> TodoItems
+        {
+            get { return this._todoItems; }
+        }
+
         public string SelectedItem { get; set; }
+        public string SelectedTodoItem { get; set; }
 
         public MainPage()
         {
@@ -41,7 +48,8 @@ namespace SpontiUI
         {
             base.OnNavigatedTo(e);
 
-            NewMethod();
+            GetItems();
+            GetTodoItems();
         }
 
         private void OnClick(object sender, RoutedEventArgs e)
@@ -50,7 +58,7 @@ namespace SpontiUI
             NewMethod1();
         }
 
-        private async System.Threading.Tasks.Task NewMethod1()
+        private async Task NewMethod1()
         {
             await this.itemsService.PlayAsync(this.SelectedItem);
             try
@@ -100,12 +108,21 @@ namespace SpontiUI
             });
         }
 
-        private async System.Threading.Tasks.Task NewMethod()
+        private async Task GetItems()
         {
             var items = await this.itemsService.GetItemsAsync();
             foreach (var item in items)
             {
                 Items.Add(item);
+            }
+        }
+
+        private async Task GetTodoItems()
+        {
+            var items = await this.itemsService.GetTodoItemsAsync();
+            foreach (var item in items)
+            {
+                TodoItems.Add(item);
             }
         }
     }

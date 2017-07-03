@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Table;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,29 @@ namespace SpontiBL
                 .Select(b => b.Name);
         }
 
+        public async Task<IEnumerable<string>> GetTodoItemsAsync()
+        {
+            var storageAccount = CloudStorageAccount.Parse(Settings.ConnectionString);
+            var tableClient = storageAccount.CreateCloudTableClient();
+            var table = tableClient.GetTableReference("todoitems");
+
+            var query = new TableQuery<TodoItem>();
+            TableContinuationToken token = null;
+            var list = new List<string>();
+            do
+            {
+                var resultSegment = await table.ExecuteQuerySegmentedAsync(query, token);
+                token = resultSegment.ContinuationToken;
+
+                foreach (var entity in resultSegment.Results)
+                {
+                    list.Add(entity.Id);
+                }
+            } while (token != null);
+
+            return list;
+        }
+
         public async Task PlayAsync(string selectedItem)
         {
             // Retrieve storage account from connection string.
@@ -59,5 +83,25 @@ namespace SpontiBL
             }
             var test = 0;
         }
+    }
+
+    public class TodoItem : TableEntity
+    {
+        public TodoItem(string id, string content)
+        {
+            this.Id = id;
+            this.Content = content;
+
+            this.PartitionKey = id;
+            this.RowKey = content;
+        }
+
+        public TodoItem() { }
+
+        public string Id { get; set; }
+
+        public string Content { get; set; }
+
+        public string Additional { get; set; }
     }
 }
